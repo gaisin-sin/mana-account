@@ -244,13 +244,13 @@ body {
 
 .money-button-container {
     background: linear-gradient(145deg, #ffffff, #f8f9fa);
-    height: 280px;
+    height: 360px;
     margin-top: 5px;
     border-radius: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     padding: 15px 30px;
     box-shadow: 
         0 10px 30px rgba(0, 0, 0, 0.1),
@@ -258,13 +258,39 @@ body {
         inset 0 1px 0 rgba(255, 255, 255, 0.8);
     border: 2px solid rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
-    gap: 20px;
+    gap: 10px;
+}
+
+.money-button-containers {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    height: 360px;
+    margin-top: 5px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 1px 8px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    gap: 10px;
+}
+
+.money-button-row {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
 }
 
 .money-button {
-    width: 280px;
-    height: 180px;
-    font-size: 60px;
+    width: 180px;
+    height: 90px;
+    font-size: 36px;
     font-weight: 700;
     border-radius: 16px;
     border: 2px solid #334155;
@@ -280,6 +306,8 @@ body {
     align-items: center;
     display: flex;
     backdrop-filter: blur(5px);
+    flex: 1;
+    min-width: 80px;
 }
 
 /* ACボタン専用スタイル */
@@ -484,17 +512,22 @@ body {
         font-size: 22px;
     }
     
-    .money-button-container {
-        height: 25vh;
+    .money-button-container, .money-button-containers {
+        height: 35vh;
         margin-top: 0;
-        padding: 15px;
+        padding: 10px;
+        gap: 8px;
+    }
+    
+    .money-button-row {
         gap: 8px;
     }
     
     .money-button {
-        width: 120px;
-        height: 80px;
-        font-size: 32px;
+        width: 100px;
+        height: 60px;
+        font-size: 24px;
+        min-width: 60px;
     }
     
     .money-button.ALLCA {
@@ -570,17 +603,22 @@ body {
         font-size: 16px;
     }
     
-    .money-button-container {
-        height: 25vh;
+    .money-button-container, .money-button-containers {
+        height: 35vh;
         margin-top: 0;
         padding: 8px;
-        gap: 4px;
+        gap: 6px;
+    }
+    
+    .money-button-row {
+        gap: 6px;
     }
     
     .money-button {
-        width: 90px;
-        height: 60px;
-        font-size: 24px;
+        width: 80px;
+        height: 50px;
+        font-size: 18px;
+        min-width: 50px;
     }
     
     .money-button.ALLCA {
@@ -704,9 +742,127 @@ body {
     }
 }
 
-.money-button-containers {
-  display:flex;
-  flex-direction:row;
-  gap:10px;
-  margin-top:10px;
+
+
+.buttons1 {
+
+}
+
+.money-button-containersuper {
+    display:flex;
+    flex-direction: row;
+}
+
+.button1 {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+    height:100vh;
+    
+}
+
+.mbutton-row {
+    display:flex;
+    flex-direction: row;
+    gap:20px;
+    font-size:20px;
+    margin-bottom:10px;
+    margin-top:5px;
+    
+}
+
+.mbutton {
+    font-weight: bold;
+
+
+
+   
+    border-radius: 16px;
+    border: 2px solid #334155;
+    cursor: pointer;
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+   
+    overflow: hidden;
+    background: linear-gradient(145deg, #64748b, #475569);
+    color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    backdrop-filter: blur(5px);
+    flex: 1;
+    min-width: 80px;
+    
+}
+
+.mbutton:active {
+    transform: translateY(5px) scale(0.95);
+    background: linear-gradient(145deg, #475569, #334155);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    border-color: #1e293b;
+}
+
+.button2 {
+    
+    width:100%;
+    height: 100vh;
+    justify-items: center;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ca-button,.other-button {
+
+    width:100px;
+    height:30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:30px;
+    border-radius: 10%;
+}
+.ca-button {
+       background: linear-gradient(145deg, #ef4444, #dc2626) !important;
+    color: #ffffff !important;
+    border-color: #b91c1c !important;
+    font-weight: 800;
+    margin-top:8px;
+    box-shadow: 
+        0 6px 20px rgba(239, 68, 68, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+}
+
+.ca-button:active {
+    transform: translateY(5px) scale(0.95);
+    background: linear-gradient(145deg, #b91c1c, #991b1b) !important;
+    box-shadow: 
+        0 2px 8px rgba(239, 68, 68, 0.2),
+        inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    border-color: #7f1d1d !important;
+}
+
+.other-button {
+    margin-top:10px;
+      background: linear-gradient(145deg, #f59e0b, #d97706) !important;
+    color: #ffffff !important;
+    border-color: #b45309 !important;
+    font-weight: bold;
+    font-size:30px;
+    box-shadow: 
+        0 6px 20px rgba(245, 158, 11, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.other-button:active {
+    transform: translateY(5px) scale(0.95);
+    background: linear-gradient(145deg, #b45309, #92400e) !important;
+    box-shadow: 
+        0 2px 8px rgba(245, 158, 11, 0.2),
+        inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    border-color: #78350f !important;
 }

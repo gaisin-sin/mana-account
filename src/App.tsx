@@ -198,24 +198,29 @@ export const App = () => {
         </div>
       </div>
 
-      <div className="money-button-containers">
-        <div className="money-button" onClick={() => AddPut(100)}>
-          100
+      <div className="money-button-containersuper">
+        <div className="button1">
+          <div className="mbutton-row">
+            <div className="mbutton" onClick={() => AddPut(100)}>100</div>
+            <div className="mbutton"  onClick={() => AddPut(500)}>500</div>
+            <div className="mbutton"  onClick={() => AddPut(1000)}>1000</div>
+          </div>
+          <div className="mbutton-row">
+          <div className="mbutton"  onClick={() => AddPut(2000)}>2000</div>
+          <div className="mbutton"  onClick={() => AddPut(3000)}>3000</div>
+          <div className="mbutton"  onClick={() => AddPut(5000)}>5000</div>
         </div>
-        <div className="money-button"  onClick={() => AddPut(500)}>
-          500
         </div>
-        <div className="money-button"  onClick={() => AddPut(1000)}>
-          1000
-        </div>
-<div className="money-button AC"  onClick={() => setPut(0)}>
-          AC
-        </div>
-         <div className="money-button other" onClick={() => setShowCalculator(true)}>
-          他
-        </div>
-       
         
+
+        <div className="button2">
+          <div className="ca-button" onClick={() => ALLCLEAR()}>
+            CA
+          </div>
+          <div className="other-button" onClick={() => setShowCalculator(true)}>
+            他
+          </div>
+        </div>
       </div>
 
       {showCalculator && (
