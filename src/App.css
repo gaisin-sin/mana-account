@@ -1,0 +1,712 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    touch-action: manipulation;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+}
+
+.drink-container {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    width: 50%;
+    border-radius: 16px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 1px 8px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    overflow-y: auto; /* スクロール機能追加 */
+    max-height: 90vh; /* 最大高さを制限 */
+    
+    /* スクロールバーを非表示 */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* WebKitブラウザのスクロールバーを非表示 */
+.drink-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* 飲み物要素の最適化 */
+.drink-container p {
+    background: linear-gradient(145deg, #f1f3f4, #e8eaed);
+    color: #2c3e50;
+    border-radius: 14px;
+    min-height: 80px; /* 固定heightから最小高さに変更 */
+    padding: 0 15px; /* 上下パディングをなくし左右のみに */
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px; /* フォントサイズ少し小さく */
+    cursor: pointer;
+    border: 2px solid #e5e7eb;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px; /* マージン減少 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drink-container p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.drink-container p:hover {
+    background: linear-gradient(145deg, #e8eaed, #d1d5db);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border-color: #3b82f6;
+}
+
+.drink-container p:hover::before {
+    left: 100%;
+}
+
+.drink-container p:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.right-container {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    width: 50%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 1px 8px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.choice-container {
+    background: white;
+    height: 70%;
+    padding: 22px;
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+    border-bottom: 2px solid #e5e7eb;
+    border: none;
+    overflow-y: auto;
+    
+    /* スクロールバーを非表示 */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    
+    /* スムーズスクロール */
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* WebKitブラウザのスクロールバーを非表示 */
+.choice-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* メニュー項目の最適化 */
+.menu {
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(145deg, #ffffff, #f1f3f4);
+    min-height: 120px; /* 固定heightからmin-heightに変更 */
+    border-radius: 10px;
+    font-weight: bold;
+    border: 1px solid #5ce7e0;
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.2s ease;
+    align-items: center;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    flex-shrink: 0; /* メニューが縮むのを防止 */
+}
+
+.menu p {
+    font-size: 30px;
+}
+
+/* 最後のメニューアイテムのマージン調整 */
+.menu:last-child {
+    margin-bottom: 10px;
+}
+
+
+.add-button, .del-button {
+    ;
+    border-radius: 10%; 
+    border: none;
+    cursor: pointer;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+    color: #1e293b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 50px;
+    width: 50px;
+    font-size: 35px;
+    font-weight: 700;
+}
+.add-button {
+    margin-left: 30px;
+    background-color: #1ab2e9;
+}
+
+.del-button {
+    background-color: #e91a1a;
+}
+
+.sum-container {
+    background: linear-gradient(145deg, #10b981, #059669);
+    height: 10%;
+    padding: 14px 22px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 40px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.change-container {
+    background: linear-gradient(145deg, #f59e0b, #d97706);
+    height: 10%;
+    padding: 14px 22px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 40px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.total-inserted-container {
+    background: linear-gradient(145deg, #3b82f6, #2563eb);
+    height: 10%;
+    padding: 14px 22px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 40px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.money-button-container {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    height: 280px;
+    margin-top: 5px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 15px 30px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 1px 8px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    gap: 20px;
+}
+
+.money-button {
+    width: 280px;
+    height: 180px;
+    font-size: 60px;
+    font-weight: 700;
+    border-radius: 16px;
+    border: 2px solid #334155;
+    cursor: pointer;
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #64748b, #475569);
+    color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    backdrop-filter: blur(5px);
+}
+
+/* ACボタン専用スタイル */
+.money-button.AC {
+    background: linear-gradient(145deg, #ef4444, #dc2626) !important;
+    color: #ffffff !important;
+    border-color: #b91c1c !important;
+    font-weight: 800;
+    box-shadow: 
+        0 6px 20px rgba(239, 68, 68, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* otherボタン専用スタイル */
+.money-button.other {
+    background: linear-gradient(145deg, #f59e0b, #d97706) !important;
+    color: #ffffff !important;
+    border-color: #b45309 !important;
+    font-weight: 700;
+    box-shadow: 
+        0 6px 20px rgba(245, 158, 11, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ALLCAボタン専用スタイル */
+.clear-button.ALLCA {
+  margin-right:10px;
+  background:red;
+}
+
+/* クリアボタン用のスタイル */
+.clear-button-container {
+    padding: 10px 40px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clear-button {
+    background: linear-gradient(145deg, #ef4444, #dc2626);
+    color: #ffffff;
+    border: none;
+    width: 100%;
+    height: 70px;
+    border-radius: 14px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 
+        0 4px 15px rgba(239, 68, 68, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clear-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.clear-button:hover {
+    background: linear-gradient(145deg, #dc2626, #b91c1c);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 25px rgba(239, 68, 68, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.clear-button:hover::before {
+    left: 100%;
+}
+
+.clear-button:active {
+    background: linear-gradient(145deg, #b91c1c, #991b1b);
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 
+        0 4px 15px rgba(239, 68, 68, 0.2),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.money-button:active {
+    transform: translateY(5px) scale(0.95);
+    background: linear-gradient(145deg, #475569, #334155);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    border-color: #1e293b;
+}
+
+/* ACボタン専用のアクティブ状態 */
+.money-button.AC:active {
+    transform: translateY(5px) scale(0.95);
+    background: linear-gradient(145deg, #b91c1c, #991b1b) !important;
+    box-shadow: 
+        0 2px 8px rgba(239, 68, 68, 0.2),
+        inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    border-color: #7f1d1d !important;
+}
+
+/* otherボタン専用のアクティブ状態 */
+.money-button.other:active {
+    transform: translateY(5px) scale(0.95);
+    background: linear-gradient(145deg, #b45309, #92400e) !important;
+    box-shadow: 
+        0 2px 8px rgba(245, 158, 11, 0.2),
+        inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    border-color: #78350f !important;
+}
+
+/* ALLCAボタン専用のアクティブ状態 */
+.money-button.ALLCA:active {
+    transform: translateY(5px) scale(0.95);
+    background: linear-gradient(145deg, #6d28d9, #5b21b6) !important;
+    box-shadow: 
+        0 2px 8px rgba(139, 92, 246, 0.2),
+        inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    border-color: #4c1d95 !important;
+}
+
+/* モバイル対応のメディアクエリ */
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        height: 100vh;
+        overflow: hidden;
+    }
+    
+    .top {
+        height: 75vh;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .drink-container {
+        padding: 15px;
+        gap: 8px;
+        max-height: 100%;
+    }
+    
+    .drink-container p {
+        min-height: 50px;
+        font-size: 18px;
+        margin-bottom: 8px;
+        padding: 0 8px;
+    }
+    
+    .choice-container {
+        padding: 12px;
+        gap: 6px;
+        font-size: 16px;
+    }
+    
+    .menu {
+        min-height: 70px;
+        padding-left: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .menu p {
+        font-size: 19px;
+    }
+    
+    .add-button, .del-button {
+        height: 30px;
+        width: 30px;
+        font-size: 18px;
+        margin-left: 8px;
+    }
+    
+    .add-button {
+        margin-left: 20px;
+    }
+    
+    .clear-button-container {
+        padding: 6px 20px;
+    }
+    
+    .clear-button {
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .sum-container, .total-inserted-container, .change-container {
+        padding: 8px 12px;
+        font-size: 22px;
+    }
+    
+    .money-button-container {
+        height: 25vh;
+        margin-top: 0;
+        padding: 15px;
+        gap: 8px;
+    }
+    
+    .money-button {
+        width: 120px;
+        height: 80px;
+        font-size: 32px;
+    }
+    
+    .money-button.ALLCA {
+        font-size: 28px;
+    }
+}
+
+/* さらに小さい画面（480px以下）対応 */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+    }
+    
+    .top {
+        gap: 5px;
+        padding: 5px;
+        height: 75vh;
+    }
+    
+    .drink-container {
+        padding: 8px;
+        gap: 4px;
+    }
+    
+    .drink-container p {
+        min-height: 40px;
+        font-size: 14px;
+        margin-bottom: 4px;
+        padding: 0 6px;
+    }
+    
+    .choice-container {
+        padding: 8px;
+        gap: 4px;
+        font-size: 14px;
+    }
+    
+    .menu {
+        min-height: 55px;
+        padding-left: 8px;
+        margin-bottom: 6px;
+    }
+    
+    .menu p {
+        font-size: 15px;
+    }
+    
+    .add-button, .del-button {
+        height: 30px;
+        width: 30px;
+        font-size: 16px;
+        margin-left: 6px;
+    }
+    
+    .add-button {
+        margin-left: 12px;
+    }
+    
+    .clear-button-container {
+        padding: 4px 15px;
+    }
+    
+    .clear-button {
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .sum-container, .total-inserted-container, .change-container {
+        padding: 6px 8px;
+        font-size: 16px;
+    }
+    
+    .money-button-container {
+        height: 25vh;
+        margin-top: 0;
+        padding: 8px;
+        gap: 4px;
+    }
+    
+    .money-button {
+        width: 90px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .money-button.ALLCA {
+        font-size: 20px;
+    }
+}
+
+/* 電卓モーダルのスタイル */
+.calculator-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.calculator-container {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    max-width: 350px;
+    width: 90%;
+}
+
+.calculator-display {
+    background: #000;
+    color: #fff;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: right;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-family: 'Courier New', monospace;
+    border: 2px solid #333;
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.calc-btn {
+    height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+    color: #334155;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+}
+
+.calc-btn:hover {
+    background: linear-gradient(145deg, #cbd5e1, #94a3b8);
+    transform: translateY(-2px);
+}
+
+.calc-btn:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calc-btn.clear {
+    background: linear-gradient(145deg, #fef3c7, #fde68a);
+    color: #92400e;
+}
+
+.calc-btn.cancel {
+    background: linear-gradient(145deg, #fecaca, #f87171);
+    color: #991b1b;
+}
+
+.calc-btn.enter {
+    background: linear-gradient(145deg, #bbf7d0, #86efac);
+    color: #166534;
+}
+
+.calc-btn.zero {
+    grid-column: span 2;
+}
+
+/* モバイル対応 */
+@media (max-width: 480px) {
+    .calculator-container {
+        padding: 20px;
+        max-width: 300px;
+    }
+    
+    .calculator-display {
+        font-size: 24px;
+        padding: 15px;
+        min-height: 50px;
+    }
+    
+    .calc-btn {
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .calculator-buttons {
+        gap: 10px;
+    }
+}
+
+.money-button-containers {
+  display:flex;
+  flex-direction:row;
+  gap:10px;
+  margin-top:10px;
+}
