@@ -1,0 +1,148 @@
+.Manage {
+     background-color: #f9f9f9;
+    height:100vh;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* 全体のスクロールを防ぐ */
+}
+
+.input-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+   
+}
+
+input {
+    padding:3px;
+    width:40%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+}
+
+.add_button {
+    border-radius: 4px;
+    width:15%;
+    height:100%;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add_button:hover {
+    background-color: #3a7bc8;
+}
+
+.menu-container {
+    margin-top:30px;
+    width:100%;
+    height: calc(100vh - 200px); /* より具体的な高さ計算 */
+    max-height: calc(100vh - 200px); /* 最大高さも設定 */
+    min-height: 300px; /* 最小高さを設定 */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; /* scrollからautoに変更 */
+    padding: 10px 0; /* 上下にパディングを追加 */
+    box-sizing: border-box; /* パディングを含めたサイズ計算 */
+    
+    /* スクロールバーのスタイル */
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
+
+/* WebKit（Chrome、Safari）用のスクロールバースタイル */
+.menu-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.menu-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.menu-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.menu-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.single-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width:80%;
+    height:50px;
+    flex-shrink: 0; /* 要素が縮まないようにする */
+}
+
+.menu-name {
+    width:300px;
+    height:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-right:1px solid gray;
+}
+
+.menu-price {
+    width:300px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    display: flex;
+    color: rgb(14, 130, 213);
+    border-right: 1px solid gray;
+}
+
+.delete-button {
+    color:white;
+    height:100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:red;
+    font-weight: bold;
+}
+
+.status {
+    margin-top:10px;
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+.switch-button {
+    color:rgb(98, 165, 98)
+}
+

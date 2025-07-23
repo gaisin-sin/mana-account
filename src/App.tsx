@@ -24,6 +24,8 @@ export const App = () => {
   const [calculatorInput, setCalculatorInput] = useState("");
 
   useEffect(() => {
+    
+   
     const ws = new WebSocket("wss://main.hackwordserver-sasaki-unko.com:8080");
     
     ws.onopen = () => {
@@ -43,25 +45,17 @@ export const App = () => {
           price: item.price,
         });
       });
+      localStorage.setItem("MENU", JSON.stringify({"MENU":fixed}));
+      console.log("MM", JSON.parse(localStorage.getItem("MENU")));
       
       setMenus(fixed);
     }
     
     ws.onerror = (error) => {
-      console.log("WebSocket接続エラー:", error);
-      
-    setMenus(
-      [
-    {
-      name:"コーラ",
-      price:100,
-    },
-    {
-      name:"佐々木",
-      price:200,
-    },
-  ]
-    );
+      if (localStorage.getItem("MENU") == null) {
+                localStorage.setItem("MENU", JSON.stringify({"MENU":Menus}));
+            }
+          setMenus(JSON.parse(localStorage.getItem("MENU")).MENU);
     }
     
     ws.onclose = (event) => {
