@@ -53,7 +53,7 @@ export const Manage = () => {
     }
 
     useEffect(() => {
-        const ws = new WebSocket("wss://main.hackwordserver-sasaki-unko.com:8080");
+        const ws = new WebSocket("wss://main.hackwordserver-sasaki-unko.com:5000");
         ws.onopen = () => {
              ws.send(JSON.stringify({"type":"dataplz"}));
             setSocket(ws);

@@ -26,7 +26,7 @@ export const App = () => {
   useEffect(() => {
     
    
-    const ws = new WebSocket("wss://main.hackwordserver-sasaki-unko.com:8080");
+    const ws = new WebSocket("wss://main.hackwordserver-sasaki-unko.com:5000");
     
     ws.onopen = () => {
       console.log("WebSocket接続が開かれました");
