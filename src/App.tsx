@@ -84,6 +84,11 @@ export const App = () => {
 
   const Change = (index : number, dif : number) => {
     const news = [...Selected]
+    if (news[index].count + dif <= 0) {
+      news.splice(index, 1);
+      SetSelected(news);
+      return;
+    }
     news[index].count += dif;
     console.log("NEW", news);
     SetSelected(news);
@@ -208,7 +213,7 @@ export const App = () => {
         
 
         <div className="button2">
-          <div className="ca-button" onClick={() => ALLCLEAR()}>
+          <div className="ca-button" onClick={() => setPut(0)}>
             CA
           </div>
           <div className="other-button" onClick={() => setShowCalculator(true)}>
