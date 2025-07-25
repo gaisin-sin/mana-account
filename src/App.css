@@ -217,7 +217,7 @@ body {
 
 .change-container {
     background: linear-gradient(145deg, #f59e0b, #d97706);
-    height: 10%;
+    height: 20%;
     padding: 14px 22px;
     color: #ffffff;
     display: flex;
@@ -602,7 +602,9 @@ body {
         padding: 6px 8px;
         font-size: 16px;
     }
-    
+    .change-container {
+        font-size:25px;
+    }
     .money-button-container, .money-button-containers {
         height: 35vh;
         margin-top: 0;
